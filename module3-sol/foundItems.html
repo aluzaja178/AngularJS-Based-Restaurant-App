@@ -1,0 +1,29 @@
+
+<div class="loader"></div>
+    
+        <table class="table">
+            <thead>
+                <tr>
+                 
+                    <th>Name</th>
+                    <th>Short Name</th>
+                    <th>Description</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="item in menu.found">>
+                  
+                    <td>{{ item.name }}</td>
+                    <td>{{ item.short_name }}</td>
+                    <td>{{ item.description }}</td>
+                    <td><button ng-click="menu.onRemove({index: $index});">Remove Item</button></td>
+                </tr>
+
+            </tbody>
+        </table>
+        </div>
+        <!-- {{ item.short_name }} -->
+        <!-- <button ng-click="list.badRemove($index);">Bad Remove Item</button> -->
+
+   
