@@ -27,16 +27,16 @@
   function FoundItemsDirectiveController() {
     var menu = this;
 
-    menu.cookiesInList = function () {
-      for (var i = 0; i < list.items.length; i++) {
-        var name = list.items[i].name;
-        if (name.toLowerCase().indexOf("cookie") !== -1) {
-          return true;
-        }
-      }
+    // menu.cookiesInList = function () {
+    //   for (var i = 0; i < list.items.length; i++) {
+    //     var name = list.items[i].name;
+    //     if (name.toLowerCase().indexOf("cookie") !== -1) {
+    //       return true;
+    //     }
+    //   }
 
-      return false;
-    };
+    //   return false;
+    // };
   }
 
 
@@ -46,23 +46,37 @@
     var menu = this;
     menu.searchTermVal = null;
     menu.found = null;
+    menu.message = false;
 
-    var promise = MenuCategoriesService.getMenuCategories();
-
-    promise.then(function (response) {
-        menu.categories = response.data;
-      })
-      .catch(function (error) {
-        console.log("Something went terribly wrong.");
-      });
 
     menu.logMenuItems = function (searchTermVal) {
 
-      var promise = MenuCategoriesService.getMenuForCategory(searchTermVal);
+      if (searchTermVal == null || searchTermVal == "") {
+        menu.message = true;
+        menu.found = '';
+
+        return;
+
+      } else {
+        var promise = MenuCategoriesService.getMenuForCategory(searchTermVal.toLowerCase());
+        menu.message = false;
+        // console.log("Promise",promise.);
+
+      }
+
 
       promise.then(function (response) {
+          console.log("Response", response);
+          if (response.length === 0) {
+            // alert(response);
+            menu.message = true;
+            return;
+          } else {
+            menu.message = false;
+            menu.found = response;
+          }
+
           console.log("CTRL", response)
-          menu.found = response;
 
         })
         .catch(function (error) {
@@ -111,16 +125,24 @@
 
         var json = result.data;
 
-
+        resultt.length = 0;
         for (var i = 0; i < json.menu_items.length; i++) {
           var obj = json.menu_items[i];
-          if (obj.name.includes(shortName)) {
+          if (obj.description.indexOf(shortName) !== -1) {
             resultt.push(obj);
           }
 
 
         }
-        return resultt;
+        console.log("Lengt", resultt.length);
+
+        if (resultt.length < 0) {
+
+        } else {
+          return resultt;
+        }
+
+
 
       });
 
