@@ -47,12 +47,13 @@
     menu.searchTermVal = null;
     menu.found = null;
     menu.message = false;
-
+    //  menu.loading = true;
 
     menu.logMenuItems = function (searchTermVal) {
-
+      menu.loading = true;
       if (searchTermVal == null || searchTermVal == "") {
         menu.message = true;
+        menu.loading = false;
         menu.found = '';
 
         return;
@@ -70,9 +71,11 @@
           if (response.length === 0) {
             // alert(response);
             menu.message = true;
+            menu.loading = false;
             return;
           } else {
             menu.message = false;
+            menu.loading = false;
             menu.found = response;
           }
 
