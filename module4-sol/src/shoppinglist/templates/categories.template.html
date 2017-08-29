@@ -1,7 +1,7 @@
-<ul>
+<ul class="list-group row">
   
  
-  <li ng-repeat="item in $ctrl.items.data"   ui-sref="mainList.itemDetail({itemId:  $ctrl.items.data[$index].short_name})"  >
+  <li class="list-group-item col-xs-6 col-sm-4 col-md-3" ng-repeat="item in $ctrl.items.data"   ui-sref="mainList.itemDetail({itemId:  $ctrl.items.data[$index].short_name})"  >
      {{ item.name }}
   </li>
 </ul>
