@@ -26,9 +26,9 @@
         templateUrl: 'src/shoppinglist/templates/main-categories.template.html',
         controller: 'MainCategoriesController as mainList',
         resolve: {
-          items: ['MenuDataService ', function (MenuDataService ) {
-            return MenuDataService .getAllCategories();
-            console.log("Response", MenuDataService .getAllCategories());
+          items: ['MenuDataService ', function (MenuDataService) {
+            return MenuDataService.getAllCategories();
+            console.log("Response", MenuDataService.getAllCategories());
 
           }]
         }
@@ -38,6 +38,13 @@
         url: '/item-detail/{itemId}',
         templateUrl: 'src/shoppinglist/templates/item-detail.template.html',
         controller: "ItemDetailController as itemDetail",
+        resolve: {
+          items: ['$stateParams', 'MenuDataService ', function ($stateParams, MenuDataService) {
+
+            return MenuDataService.getItemsForCategory($stateParams.itemId);
+
+          }]
+        }
 
       });
 
