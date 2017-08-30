@@ -5,22 +5,24 @@
     .controller('ItemDetailController', ItemDetailController);
 
 
-  ItemDetailController.$inject = ['$stateParams', 'MenuDataService '];
+  ItemDetailController.$inject = ['$stateParams', 'MenuDataService ', 'items'];
 
-  function ItemDetailController($stateParams, MenuDataService ) {
+
+  function ItemDetailController($stateParams, MenuDataService, items) {
+    console.log("CTRL Itemsss", items.data.menu_items);
     var itemDetail = this;
     // console.log("Items",items);
-    var promise = MenuDataService .getItemsForCategory($stateParams.itemId);
 
-    promise.then(function (response) {
-        console.log("CTRL Response", response.data.menu_items);
-        itemDetail.itemss = response.data.menu_items;
+    itemDetail.itemss = items.data.menu_items
+    // promise.then(function (response) {
+    //     console.log("CTRL Response", response.data.menu_items);
+    //     itemDetail.itemss = response.data.menu_items;
 
-      })
-      .catch(function (error) {
-        console.log(error);
+    //   })
+    //   .catch(function (error) {
+    //     console.log(error);
 
-      })
+    //   })
 
 
 
