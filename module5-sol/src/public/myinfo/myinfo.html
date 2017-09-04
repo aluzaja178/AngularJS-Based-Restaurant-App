@@ -1,0 +1,58 @@
+<div class="container">
+    <h2 id="menu-categories-title" class="text-center">My Profile</h2>
+    <div ng-if="!myInfoCtrl.canshow" class="text-center">
+        <span>Not Signed Up Yet. <a ui-sref="public.signup">Sign Up Now!</a></span>
+    </div>
+    <div ng-if="myInfoCtrl.canshow">
+        <div class="menu-item-tile col-md-6">
+            <div class="row">
+                <div class="col-sm-5">
+                    <div class="menu-item-photo">
+                        <div class="ng-binding">{{myInfoCtrl.user.menu_item.short_name}}</div>
+                        <img class="img-responsive" width="250" height="150" ng-src="https://aluzaja178-course5.herokuapp.com/images/L19.jpg" alt="Hunan Bean Curd"
+                            src="https://aluzaja178-course5.herokuapp.com/images/{{myInfoCtrl.user.menu_item.short_name}}.jpg">
+                    </div>
+                    <div class="menu-item-price ng-binding"><span class="ng-binding"> </span> {{myInfoCtrl.user.menu_item.price_small | currency}} <span class="ng-binding"></span></div>
+                </div>
+                <div class="menu-item-description col-sm-7">
+                    <h3 class="menu-item-title ng-binding">{{myInfoCtrl.user.menu_item.name}}</h3>
+                    <p class="menu-item-details ng-binding">{{myInfoCtrl.user.menu_item.description}}</p>
+                </div>
+            </div>
+            <hr class="visible-xs">
+        </div>
+
+        <div class="menu-item-tile col-md-6">
+            <div class="row">
+                <table class="table table-user-information">
+                    <tbody>
+                        <tr>
+                            <td>First Name:</td>
+                            <td>{{myInfoCtrl.user.FirstName}}</td>
+                        </tr>
+                        <tr>
+                            <td>Last Name:</td>
+                            <td>{{myInfoCtrl.user.LastName}}</td>
+                        </tr>
+
+
+                        <tr>
+
+                            <tr>
+                                <td>Email</td>
+                                <td>{{myInfoCtrl.user.email}}</td>
+                            </tr>
+                            <td>Phone Number</td>
+                            <td>{{myInfoCtrl.user.phone}}
+                            </td>
+
+                        </tr>
+
+                    </tbody>
+                </table>
+
+            </div>
+            <hr class="visible-xs">
+        </div>
+    </div>
+</div>

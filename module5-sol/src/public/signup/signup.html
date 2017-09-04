@@ -1,0 +1,56 @@
+<div class="container">
+  <div class="signup">
+    <h1 class="text-center">Sign Up</h1>
+    <form name="regForm" novalidate>
+      <div class="col-md-6 col-md-offset-3">
+        <div class="form-group">
+          <label>First Name</label>
+          <input class="form-control" name="FirstName" ng-model="signupCtrl.firstname" required minlength="4" ng-maxlength="10" type="text"
+            autofocus>
+          <span ng-if="(regForm.FirstName.$error.minlength || regForm.FirstName.$error.required) && regForm.FirstName.$touched">
+            First Name must be at least 4 characters long
+          </span>
+          <span ng-if="regForm.FirstName.$error.maxlength && regForm.FirstName.$touched">
+            First Name must not be longer than 10 characters
+          </span>
+
+        </div>
+        <div class="form-group">
+          <label>Last Name</label>
+          <input name="LastName" ng-model="signupCtrl.lastname" required minlength="4" ng-maxlength="10" class="form-control" type="text">
+          <span ng-if="(regForm.LastName.$error.minlength || regForm.LastName.$error.required) && regForm.LastName.$touched">
+            Last Name must be at least 4 characters long
+          </span>
+          <span ng-if="regForm.LastName.$error.maxlength && regForm.LastName.$touched">
+            Last Name must not be longer than 10 characters
+          </span>
+        </div>
+        <div class="form-group">
+          <label>Phone#</label>
+          <input class="form-control" type="text" name="phone" placeholder="Phone ###-###-####" ng-model="signupCtrl.phone" pattern="(\d{3})-(\d{3})-(\d{4})">
+          <span ng-if="regForm.phone.$invalid && regForm.phone.$touched">
+            Phone must be in the format ###-###-####.
+          </span>
+        </div>
+        <div class="form-group">
+          <label>Email</label>
+          <input type="email" class="form-control" name="email" placeholder="Email" ng-model="signupCtrl.email" required>
+          <span ng-if="regForm.email.$invalid && regForm.email.$touched">
+            Must be a valid email address: handle@domain format
+          </span>
+        </div>
+        <div class="form-group">
+          <label>Menu#</label>
+          <input ng-model="signupCtrl.menu" class="form-control" type="text">
+        </div>
+        <div class="form-group">
+          <button ng-disabled="regForm.$invalid" ng-click="signupCtrl.submit()" class="btn btn-primary">Submit</button>
+        </div>
+      </div>
+      <div ng-if="signupCtrl.found" class="login-error text-center">
+        <span>Congratulations! Your Information Saved.</span>
+      </div>
+    </form>
+
+  </div>
+</div>
