@@ -35,6 +35,14 @@
             });
         };
 
+        service.getAllMenuItems = function () {
+
+            return $http.get(ApiPath + '/menu_items'  + '.json').then(function (response) {
+             
+                return response.data;
+            });
+        };
+
 
         service.saveInformation = function (user) {
             user.menu_item = menu_item;
