@@ -17,7 +17,7 @@
 
         reg.submit = function () {
 
-            var promise = SignupService.getMenuItemByShortName(reg.menu);
+            var promise = SignupService.getMenuItemByShortName(reg.menu.toUpperCase());
             promise.then(function (response) {
                     console.log("Status", response);
                     if (response === 200) {
