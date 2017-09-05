@@ -30,14 +30,45 @@
 
                         SignupService.saveInformation(user);
                         reg.found = true;
+                        reg.notfound = false;
                     }
                 })
                 .catch(function (error) {
-                    console.log(error);
+                    if (error.status === 500) {
+                        reg.notfound = true;
+                        reg.found = false;
+                    }
                 })
 
 
             reg.completed = true;
+        };
+
+        reg.onMenuChange = function (menu) {
+            var promise = SignupService.getAllMenuItems();
+
+            promise.then(function (response) {
+                    reg.onMenuChangelbl = false;
+                    angular.forEach(response.menu_items, function (item) {
+                        if (item.short_name === menu) {
+                            console.log("Found", item.short_name);
+                            reg.onMenuChangelbl = true;
+                            
+                           
+                            /////  reg.notfound = false;
+                        }
+
+
+
+                    });
+
+                })
+                .catch(function (error) {
+
+                })
+
+
+
         };
     }
 
