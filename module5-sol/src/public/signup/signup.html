@@ -4,9 +4,14 @@
     <form name="regForm" novalidate>
       <div class="col-md-6 col-md-offset-3">
         <div class="form-group">
+          <label>Menu#</label>
+          <input ng-model="signupCtrl.menu"  class="form-control" type="text" autofocus>
+          <!-- <input ng-model="signupCtrl.menu" ng-change="signupCtrl.onMenuChange(signupCtrl.menu)" class="form-control" type="text" autofocus> -->
+        </div>
+        <div class="form-group">
           <label>First Name</label>
           <input class="form-control" name="FirstName" ng-model="signupCtrl.firstname" required minlength="4" ng-maxlength="10" type="text"
-            autofocus>
+            >
           <span ng-if="(regForm.FirstName.$error.minlength || regForm.FirstName.$error.required) && regForm.FirstName.$touched">
             First Name must be at least 4 characters long
           </span>
@@ -39,16 +44,19 @@
             Must be a valid email address: handle@domain format
           </span>
         </div>
-        <div class="form-group">
-          <label>Menu#</label>
-          <input ng-model="signupCtrl.menu" class="form-control" type="text">
-        </div>
+
         <div class="form-group">
           <button ng-disabled="regForm.$invalid" ng-click="signupCtrl.submit()" class="btn btn-primary">Submit</button>
         </div>
       </div>
       <div ng-if="signupCtrl.found" class="login-error text-center">
-        <span>Congratulations! Your Information Saved.</span>
+        <span>Congratulations! Your Information has been Saved.</span>
+      </div>
+      <div ng-if="signupCtrl.notfound" class="login-error text-center">
+        <span>No such menu number exists.</span>
+      </div>
+       <div ng-if="signupCtrl.onMenuChangelbl" class="login-error text-center">
+        <span>Menu number exists.</span>
       </div>
     </form>
 
