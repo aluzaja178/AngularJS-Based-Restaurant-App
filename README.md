@@ -1,2 +1,2 @@
-# Coursera-Assignments
+# Restaurant App
 Assignmnets
